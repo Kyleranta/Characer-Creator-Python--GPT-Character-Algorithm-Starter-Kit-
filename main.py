@@ -23,16 +23,60 @@ letters = []
 for i in range(10):
     # Choose a random letter
     letter = random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+
+    # Add the letters to the list
+    letters.append(letter)
+
+# Print the list of letters
+print(letters)
+
+# Search the wordnet corpus for words starting with the specified letters
+for word in wordnet.words():
+    # Iterate over the list of letters
+    for letter in letters:
+        # Check if the word starts with one of the letters in the list
+        if word.startswith(letter):
+            # Check if the dictionary contains an entry for this length
+            if len(word) in words:
+                # Add the word to the dictionary
+                words[len(word)].append(word)
+                # Stop iterating over the letters once we have found a match
+                break
+
+# Print the words organized by their length
+for key, value in words.items():
+    print(f"{key}-letter words starting with {letter}: {value}")
+
+# Select a random sample of 5 words from the list of 6-letter words
+sample = random.sample(words[6], 24)
+
+# Print the sample
+print(sample)
+words = {
+    3: [],
+    4: [],
+    5: [],
+    6: [],
+    7: []
+}
+
+# Create a list to store the letters
+letters = []
+
+# Generate 10 random letters
+for i in range(10):
+    # Choose a random letter
+    letter = random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
     
-    # Add the letter to the list
+    # Add the letters to the list
     letters.append(letter)
     
 # Print the list of letters
 print(letters)
 
-# Search the wordnet corpus for words starting with the specified letter
+# Search the wordnet corpus for words starting with the specified letters
 for word in wordnet.words():
-    if word.startswith(letter):
+    if word.startswith(letters):
         # Check if the dictionary contains an entry for this length
         if len(word) in words:
             # Add the word to the dictionary
@@ -168,11 +212,7 @@ character = {
 
 # Print the character's characteristics, emotional state, and environment
 print(character["characteristics"])
-print
 print(character["emotional state"])
-print
 print(character["physical"])
-print
 print(character["social"])
-print
 print(character["actions"])
